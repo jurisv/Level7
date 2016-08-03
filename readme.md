@@ -1,6 +1,8 @@
 ### Example application to showcase different server side operations.
+ * Node JS 5.12.0 (https://nodejs.org/download/release/v5.12.0/)
  * Using sqlite3 for database access
  * Ext JS 6.2 EA
+ * CMD 6.2.0.86
 
 ## Installation 
 
