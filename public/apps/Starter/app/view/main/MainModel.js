@@ -1,9 +1,10 @@
 Ext.define('Starter.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
-    requires: [
-        'Starter.model.Simpsons'
-    ],
     alias: 'viewmodel.main',
+
+    requires: [
+        'Starter.model.Simpson'
+    ],
 
     data: {
         title: 'Serverside CRUD'
@@ -11,7 +12,11 @@ Ext.define('Starter.view.main.MainModel', {
 
     stores: {
         simpsons: {
-            model: 'Starter.model.Simpsons'
+            model: 'Simpson',
+            session: true,
+            autoLoad: true,
+            remoteFilter: true, // by default filtering is local
+            remoteSort: true // to illustrate remote sorting. by default sorting is local
         }
     },
 

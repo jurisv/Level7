@@ -9,6 +9,9 @@ Ext.define('Starter.view.main.Main', {
     controller: 'main',
     viewModel: 'main',
 
+    // Create a session for this view
+    session: true,
+
     items: [
         {
             xtype: 'grid',
@@ -16,15 +19,17 @@ Ext.define('Starter.view.main.Main', {
             //sizing, typically you would not specify sizes and let it size naturally according to parent
             width: 800,
             height: 500,
-            reference: 'datatable',
+            reference: 'simpsonsGrid',
             columns: [
-                {text: 'Name', dataIndex: 'name'},
-                {text: 'Email', dataIndex: 'email', flex: 1},
+                {text: 'Name', dataIndex: 'name', flex: 1},
+                {text: 'Email', dataIndex: 'email', width: 240},
                 {text: 'Phone', dataIndex: 'phone', width: 120}
             ],
-            bind: {
-                title: '{title}',
-                store: '{simpsons}'
+            bind: '{simpsons}',
+
+            //Enable edit on double click
+            listeners: {
+                rowdblclick: 'onEdit'
             },
 
             dockedItems: [
@@ -33,7 +38,6 @@ Ext.define('Starter.view.main.Main', {
                     dock: 'bottom',
                     items: [
                         {
-
                             xtype: 'textfield',
                             reference: 'search',
                             publishes: ['value'], // ensure that this value is available in viewModel
@@ -78,11 +82,17 @@ Ext.define('Starter.view.main.Main', {
                         },
                         {
                             text: 'Edit selected',
-                            handler: 'onEdit'
+                            handler: 'onEdit',
+                            bind: {
+                                disabled: '{!simpsonsGrid.selection}' // Enable button only when selection is available
+                            }
                         },
                         {
                             text: 'Delete selected',
-                            handler: 'onDelete'
+                            handler: 'onDelete',
+                            bind: {
+                                disabled: '{!simpsonsGrid.selection}'
+                            }
                         },
                         '->',
                         {
