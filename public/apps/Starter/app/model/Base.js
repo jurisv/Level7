@@ -12,11 +12,16 @@ Ext.define('Starter.model.Base', {
 
     idProperty: 'id', // defaults to id, added for clarity
     identifier: 'uuid', // uuid, sequential or negative
-
+    
     schema: {
         namespace: 'Starter.model',
         proxy: {
             type: 'level7',
+            
+            //urlBase: 'http://apidev.atlascomplete.local/atlas/', // for Atlas project
+            urlBase: '', // for this demo
+            atlasKey: 'rx', // used in Url generation to substitute placeholder. Should be set from Applciation once it changes.
+
             reader: {
                 type: 'json',
                 useSimpleAccessors: true, // Workaround for field names containing dots

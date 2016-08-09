@@ -23,6 +23,15 @@ Ext.define('Starter.ux.data.proxy.Level7', {
      * @return {String} The url
      */
     getUrl: function (request) {
-        return request ? request.getProxy().url + '/' + request.getAction() : this.callParent();
+        var proxy;
+
+        if (request) {
+            proxy = request.getProxy();
+
+            return proxy.urlBase + Ext.String.format(proxy.url, proxy.atlasKey) + '/' + request.getAction();
+
+        } else {
+            return this.callParent(arguments);
+        }
     }
 });
