@@ -19,6 +19,7 @@ Ext.define('Starter.model.Base', {
             type: 'level7',
             reader: {
                 type: 'json',
+                useSimpleAccessors: true, // Workaround for field names containing dots
                 rootProperty: 'data',
                 totalProperty: 'total',
                 successProperty: 'success',
@@ -26,6 +27,7 @@ Ext.define('Starter.model.Base', {
             },
             writer: {
                 type: 'json',
+                nameProperty: 'mapping', //send back mapped properties rather than named
                 //This server-side example relies on all fields
                 writeAllFields: true // TBD [All | modified]
             }
