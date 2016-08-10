@@ -14,6 +14,7 @@ Ext.define('Starter.model.Base', {
     identifier: 'uuid', // uuid, sequential or negative
     
     schema: {
+        id: 'atlas',
         namespace: 'Starter.model',
         proxy: {
             type: 'level7',
